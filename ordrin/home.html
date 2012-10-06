@@ -3,6 +3,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="https://raw.github.com/documentcloud/underscore/master/underscore-min.js"></script>
     <script src="https://raw.github.com/desandro/isotope/master/jquery.isotope.min.js"></script>
+    <link rel='stylesheet' href='http://isotope.metafizzy.co/css/style.css' />
     <style>
         .isotope-item {
           z-index: 2;
@@ -51,6 +52,14 @@
                -o-transition-duration: 0s;
                   transition-duration: 0s;
         }
+        .isotope-item {
+          z-index: 2;
+        }
+
+        .isotope-hidden.isotope-item {
+          pointer-events: none;
+          z-index: 1;
+        }
     </style>
 
     <script>
@@ -72,16 +81,39 @@
                 itemSelector : '.sighting',
                 layoutMode : 'fitRows'
             });
+            $('#filters a').click(function(){
+                var $this = $(this);
+                if ($this.hasClass('selected')) {
+                    return false;
+                }
+                var $optionSet = $this.parents('.option-set');
+                $optionSet.find('.selected').removeClass('selected');
+                $this.addClass('selected');
+
+                var selector = $(this).attr('data-filter');
+                $('#sightings').isotope({ filter: selector });
+                return false;
+            });
             load_new_sightings();
         });
     </script>
 </head>
 <body>
-    <div id="sightings">
+    <section id='options'>
+    <ul id="filters" class="option-set clearfix">
+      <li><a href="#" data-filter="*">show all</a></li>
+      <li><a href="#" data-filter=".new-york">New York</a></li>
+      <li><a href="#" data-filter=".san-francisco">San Francisco</a></li>
+      <li><a href="#" data-filter=".burger">Burgers</a></li>
+      <li><a href="#" data-filter=".chicken">Chicken</a></li>
+      <li><a href="#" data-filter=".Burrito">Burrito</a></li>
+    </ul>
+    </section>
 
+    <div id="sightings">
     </div>
      <script id="sighting_html" type="text/html">
-        <div class="sighting" id="sighting_<%= sighting.id %>">
+        <div class="sighting <%= sighting.item_name %> <%= sighting.place_name %>" id="sighting_<%= sighting.id %>">
             <a href="http://www.foodspotting.com/reviews/<%= sighting.review_id %>" target="_blank">
                 <img src="<%= sighting.thumb_280 %>" />
             </a>
