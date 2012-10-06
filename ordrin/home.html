@@ -80,11 +80,11 @@
     </script>
     <script>
         function get_image_url(image_url) {
-            console.log(image_url);
-            cdn_num = Math.abs(image_url.hashCode()) % 3 + 1;
+            var cdn_num = Math.abs(image_url.hashCode()) % 3 + 1;
+            if (cdn_num == 2) {
+                cdn_num = 4; // Trouble with cdn2
+            }
             return image_url.replace("dtlddqohdq03s.cloudfront.net/", "cdn" + cdn_num + ".streamfood.com/");
-// http://dtlddqohdq03s.cloudfront.net/reviews/2527484/thumb_275.jpg?1349551409
-// http://cdn1.streamfood.com/reviews/2527484/thumb_275.jpg?1349551409
         }
 
         function get_city(review_id, lat, lng) {
