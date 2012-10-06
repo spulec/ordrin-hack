@@ -32,6 +32,8 @@ class Command(BaseCommand):
                             thumb_280=image_url,
                             item_name=item['name'][:200],
                             place_name=place['name'][:200],
+                            city=place['city'][:200],
+                            state=place['state'][:200],
                             lat=sighting['latitude'],
                             lng=sighting['longitude'],
                             review_id=review['id']

@@ -73,7 +73,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 35px;
+            height: 65px;
             background: black;
             opacity: 0;
             color: white !important;
@@ -94,6 +94,15 @@
         }
     </script>
     <script>
+        function city_name(sighting) {
+            if (sighting.city){
+                if (sighting.state) {
+                    return sighting.city + ", " + sighting.state;
+                }
+                return sighting.city;
+            }
+        }
+
         function get_image_url(image_url) {
             var cdn_num = Math.abs(image_url.hashCode()) % 3 + 1;
             if (cdn_num == 2) {
@@ -178,7 +187,7 @@
                             <%= sighting.item_name %>
                         </div>
                         <div style="float:right; padding-right:15px; padding-top: 5px">
-                            <%= sighting.place_name %>
+                            <%= city_name(sighting) %>
                         </div>
                     </div>
                     <img width="280px; height:280px" src="<%= get_image_url(sighting.thumb_280) %>" />

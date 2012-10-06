@@ -8,6 +8,8 @@ class Sighting(models.Model):
     thumb_280 = models.URLField()
     lat = models.FloatField(null=True, blank=True)
     lng = models.FloatField(null=True, blank=True)
+    city = models.CharField(max_length=200)
+    state = models.CharField(max_length=200)
     review_id = models.IntegerField()
 
     def __unicode__(self):
