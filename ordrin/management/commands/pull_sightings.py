@@ -26,6 +26,7 @@ class Command(BaseCommand):
                         "dtlddqohdq03s.cloudfront.net/")
                 item = sighting['item']
                 place = sighting['place']
+                created = False
                 try:
                     new, created = Sighting.objects.get_or_create(
                             id=sighting['id'],
