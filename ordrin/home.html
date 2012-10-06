@@ -134,7 +134,7 @@
      <script id="sighting_html" type="text/html">
         <div class="sighting <%= sighting.item_name %> <%= sighting.place_name %> <%= get_city(sighting.review_id, sighting.lat, sighting.lng) %>" id="sighting_<%= sighting.id %>">
             <a href="http://www.foodspotting.com/reviews/<%= sighting.review_id %>" target="_blank">
-                <img src="<%= sighting.thumb_280 %>" />
+                <img width="280px; height:280px" src="<%= sighting.thumb_280 %>" />
             </a>
         </div>
     </script>
