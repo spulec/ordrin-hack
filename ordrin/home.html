@@ -63,16 +63,18 @@
     </style>
 
     <script>
-        function get_city(lat, lng) {
-            console.log(lat + ":" + lng);
+        function get_city(review_id, lat, lng) {
+            console.log(review_id + ":" + lat + ":" + lng);
             // 40.7142° N, 74.0064° W
+
             if (lat > 39.7 && lat < 41.7
-                && lng > 73 && lng < 75) {
+                && lng < -73 && lng > -75) {
+                    console.log("nyc");
                     return "new-york";
             }
             // 37.7750° N, 122.4183° W
             if (lat > 36.7 && lat < 38.7
-                && lng > 121.4 && lng < 123.4) {
+                && lng < -121.4 && lng > -123.4) {
                     return "san-francisco";
             }
         }
@@ -130,7 +132,7 @@
         </div>
     </div>
      <script id="sighting_html" type="text/html">
-        <div class="sighting <%= sighting.item_name %> <%= sighting.place_name %> <%= get_city(sighting.lat, sighting.lng) %>" id="sighting_<%= sighting.id %>">
+        <div class="sighting <%= sighting.item_name %> <%= sighting.place_name %> <%= get_city(sighting.review_id, sighting.lat, sighting.lng) %>" id="sighting_<%= sighting.id %>">
             <a href="http://www.foodspotting.com/reviews/<%= sighting.review_id %>" target="_blank">
                 <img src="<%= sighting.thumb_280 %>" />
             </a>
