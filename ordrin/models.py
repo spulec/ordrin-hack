@@ -8,6 +8,7 @@ class Sighting(models.Model):
     thumb_280 = models.URLField()
     lat = models.FloatField(null=True, blank=True)
     lng = models.FloatField(null=True, blank=True)
+    review_id = models.IntegerField()
 
     def __unicode__(self):
         return u"{}:{}".format(self.item_name, self.place_name)

@@ -29,7 +29,8 @@ class Command(BaseCommand):
                             item_name=item['name'][:200],
                             place_name=place['name'][:200],
                             lat=sighting['latitude'],
-                            lng=sighting['longitude']
+                            lng=sighting['longitude'],
+                            review_id=review['id']
                     )
                 except IntegrityError:
                     pass

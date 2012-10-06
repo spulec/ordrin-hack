@@ -82,7 +82,9 @@
     </div>
      <script id="sighting_html" type="text/html">
         <div class="sighting">
-            <img src="<%= sighting.thumb_280 %>" />
+            <a href="http://www.foodspotting.com/reviews/<%= sighting.review_id %>" target="_blank">
+                <img src="<%= sighting.thumb_280 %>" />
+            </a>
         </div>
     </script>
 </body>
