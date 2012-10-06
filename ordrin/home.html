@@ -63,6 +63,20 @@
     </style>
 
     <script>
+        function get_city(lat, lng) {
+            console.log(lat + ":" + lng);
+            // 40.7142° N, 74.0064° W
+            if (lat > 39.7 && lat < 41.7
+                && lng > 73 and lng < 75) {
+                    return "new-york";
+            }
+            // 37.7750° N, 122.4183° W
+            if (lat > 36.7 && lat < 38.7
+                && lng > 121.4 and lng < 123.4) {
+                    return "san-francisco";
+            }
+        }
+
         var last_id = null;
         function load_new_sightings() {
             $.getJSON('v1/', {'min_id': last_id}, function(sightings) {
@@ -106,8 +120,9 @@
           <li><a href="#" data-filter=".new-york">New York</a></li>
           <li><a href="#" data-filter=".san-francisco">San Francisco</a></li>
           <li><a href="#" data-filter=".burger, .Burger">Burgers</a></li>
+          <li><a href="#" data-filter=".pizza, .Pizza">Pizza</a></li>
           <li><a href="#" data-filter=".chicken, .Chicken">Chicken</a></li>
-          <li><a href="#" data-filter=".burrito, .Burrito">Burrito</a></li>
+          <li><a href="#" data-filter=".salad, .Salad">Salad</a></li>
         </ul>
         </section>
 
@@ -115,7 +130,7 @@
         </div>
     </div>
      <script id="sighting_html" type="text/html">
-        <div class="sighting <%= sighting.item_name %> <%= sighting.place_name %>" id="sighting_<%= sighting.id %>">
+        <div class="sighting <%= sighting.item_name %> <%= sighting.place_name %> <%= get_city(sighting.lat, sighting.lng) %>" id="sighting_<%= sighting.id %>">
             <a href="http://www.foodspotting.com/reviews/<%= sighting.review_id %>" target="_blank">
                 <img src="<%= sighting.thumb_280 %>" />
             </a>
