@@ -95,6 +95,7 @@
     </script>
     <script>
         function city_name(sighting) {
+            return "test";
             if (sighting.city){
                 if (sighting.state) {
                     return sighting.city + ", " + sighting.state;
@@ -136,7 +137,8 @@
                     var output = _.template($("#sighting_html").html(), {'sighting': sighting});
                     $('#sightings').prepend($(output)).isotope('reloadItems').isotope({sortBy: 'original-order'});
                 })
-                setTimeout(load_new_sightings, 5000);
+                var timeout = Math.floor(Math.random()*11000);
+                setTimeout(load_new_sightings, timeout);
             });
         }
         $(document).ready(function() {
@@ -186,7 +188,7 @@
                         <div style="float:left; padding-left:15px; padding-top: 5px">
                             <%= sighting.item_name %>
                         </div>
-                        <div style="float:right; padding-right:15px; padding-top: 5px">
+                        <div style="float:right; padding-right:15px; bottom: 5px !important; padding-top: 5px">
                             <%= city_name(sighting) %>
                         </div>
                     </div>
