@@ -16,7 +16,7 @@ class Command(BaseCommand):
         except IndexError:
             last_id = 0
         while True:
-            res = requests.get(url, params={'api_key': API_KEY})
+            res = requests.get(url, params={'api_key': API_KEY, 'sort': 'latest'})
             sightings = res.json['data']['sightings']
             for sighting in sightings:
                 review = sighting['current_review']
