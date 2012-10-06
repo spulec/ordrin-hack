@@ -136,7 +136,7 @@
                     var output = _.template($("#sighting_html").html(), {'sighting': sighting});
                     $('#sightings').prepend($(output)).isotope('reloadItems').isotope({sortBy: 'original-order'});
                 })
-                var timeout = Math.floor(Math.random()*11000);
+                var timeout = Math.floor(Math.random()*15000);
                 setTimeout(load_new_sightings, timeout);
             });
         }
@@ -164,6 +164,10 @@
 </head>
 <body>
     <div id="outer">
+        <div>
+            <img style="position:absolute; left: 120px; height:45px; width: 200px;" src="http://s3.amazonaws.com/justthereadme/StreamFood4.png" alt="Logo"/>
+        </div>
+
         <section id='options' style='margin: 0 auto !important; width:550px'>
         <ul id="filters" class="option-set clearfix">
           <li><a href="#" class="selected" data-filter="*">Show All</a></li>
