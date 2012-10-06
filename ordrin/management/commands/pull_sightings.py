@@ -43,5 +43,9 @@ class Command(BaseCommand):
                     pass
                 if created:
                     print 'Added', sighting['id']
-            time.sleep(5)
+            time.sleep(3)
+            sightings = Sighting.objects.all()
+            to_delete = sightings[500:]
+            for delete in to_delete:
+                delete.delete()
             print 'Done!'
