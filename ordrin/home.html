@@ -64,7 +64,7 @@
                     var output = _.template($("#sighting_html").html(), {'sighting': sighting});
                     $('#sightings').prepend($(output)).isotope('reloadItems').isotope({sortBy: 'original-order'});
                 })
-                setTimeout(load_new_sightings, 1000);
+                setTimeout(load_new_sightings, 2000);
             });
         }
         $(document).ready(function() {

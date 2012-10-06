@@ -10,7 +10,9 @@ class AjaxSightings(JSONResponseMixin, View):
         sightings = Sighting.objects.all().order_by('-id')
         if min_id:
             sightings = sightings.filter(id__gt=min_id)
-        sightings = sightings[:20]
+            sightings = sightings[-1]
+        else:
+            sightings = sightings[:20]
         sightings = [x.__dict__ for x in sightings]
         for sighting in sightings:
             sighting.pop('_state')

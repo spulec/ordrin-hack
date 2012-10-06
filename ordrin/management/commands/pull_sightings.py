@@ -25,8 +25,8 @@ class Command(BaseCommand):
                 new, created = Sighting.objects.get_or_create(
                         id=sighting['id'],
                         thumb_280=review['thumb_280'],
-                        item_name=item['name'],
-                        place_name=place['name'],
+                        item_name=item['name'][:200],
+                        place_name=place['name'][:200],
                         lat=sighting['latitude'],
                         lng=sighting['longitude']
                 )
