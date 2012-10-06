@@ -33,3 +33,4 @@ class Command(BaseCommand):
                 if created:
                     print 'Added', sighting['id']
             time.sleep(5)
+            print 'Done!'
