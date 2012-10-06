@@ -13,7 +13,7 @@ class AjaxSightings(JSONResponseMixin, View):
             if sightings:
                 sightings = [list(sightings)[-1]]
         else:
-            sightings = sightings[20:30]
+            sightings = sightings[10:30]
         sightings = [x.__dict__ for x in sightings]
         for sighting in sightings:
             sighting.pop('_state')
