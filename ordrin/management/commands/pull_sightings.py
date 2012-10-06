@@ -20,12 +20,18 @@ class Command(BaseCommand):
             sightings = res.json['data']['sightings']
             for sighting in sightings:
                 review = sighting['current_review']
+
+                image_url = review['thumb_280']
+                "http://s3.amazonaws.com/foodspotting-ec2/reviews/2526351/thumb_275.jpg?1349541252"
+                "http://dtlddqohdq03s.cloudfront.net/"
+                image_url = image_url.replace("s3.amazonaws.com/foodspotting-ec2/",
+                        "dtlddqohdq03s.cloudfront.net/")
                 item = sighting['item']
                 place = sighting['place']
                 try:
                     new, created = Sighting.objects.get_or_create(
                             id=sighting['id'],
-                            thumb_280=review['thumb_280'],
+                            thumb_280=image_url,
                             item_name=item['name'][:200],
                             place_name=place['name'][:200],
                             lat=sighting['latitude'],
