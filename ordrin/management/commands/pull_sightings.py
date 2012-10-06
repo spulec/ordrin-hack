@@ -44,7 +44,7 @@ class Command(BaseCommand):
                 if created:
                     print 'Added', sighting['id']
             time.sleep(3)
-            sightings = Sighting.objects.all()
+            sightings = Sighting.objects.order_by('-id')
             to_delete = sightings[500:]
             for delete in to_delete:
                 delete.delete()
