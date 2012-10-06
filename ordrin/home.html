@@ -60,11 +60,34 @@
           pointer-events: none;
           z-index: 1;
         }
-    </style>
 
+        #options li a {
+            padding-left: 8.5px !important;
+            padding-right: 8.5px !important;
+        }
+    </style>
     <script>
+        String.prototype.hashCode = function(){
+            var hash = 0;
+            if (this.length == 0) return hash;
+            for (i = 0; i < this.length; i++) {
+                char = this.charCodeAt(i);
+                hash = ((hash<<5)-hash)+char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
+        }
+    </script>
+    <script>
+        function get_image_url(image_url) {
+            console.log(image_url);
+            cdn_num = Math.abs(image_url.hashCode()) % 3 + 1;
+            return image_url.replace("dtlddqohdq03s.cloudfront.net/", "cdn" + cdn_num + ".streamfood.com/");
+// http://dtlddqohdq03s.cloudfront.net/reviews/2527484/thumb_275.jpg?1349551409
+// http://cdn1.streamfood.com/reviews/2527484/thumb_275.jpg?1349551409
+        }
+
         function get_city(review_id, lat, lng) {
-            console.log(review_id + ":" + lat + ":" + lng);
             // 40.7142° N, 74.0064° W
 
             if (lat > 39.7 && lat < 41.7
@@ -116,7 +139,7 @@
 </head>
 <body>
     <div id="outer">
-        <section id='options' style='margin: 0 auto !important; width:500px'>
+        <section id='options' style='margin: 0 auto !important; width:550px'>
         <ul id="filters" class="option-set clearfix">
           <li><a href="#" data-filter="*">Show All</a></li>
           <li><a href="#" data-filter=".new-york">New York</a></li>
@@ -134,7 +157,7 @@
      <script id="sighting_html" type="text/html">
         <div class="sighting <%= sighting.item_name %> <%= sighting.place_name %> <%= get_city(sighting.review_id, sighting.lat, sighting.lng) %>" id="sighting_<%= sighting.id %>">
             <a href="http://www.foodspotting.com/reviews/<%= sighting.review_id %>" target="_blank">
-                <img width="280px; height:280px" src="<%= sighting.thumb_280 %>" />
+                <img width="280px; height:280px" src="<%= get_image_url(sighting.thumb_280) %>" />
             </a>
         </div>
     </script>
