@@ -1,5 +1,7 @@
+django_braces==0.1.7
 dj-database-url
 django==1.4.1
 psycopg2
 requests==0.14.1
+south
 wsgiref==0.1.2
