@@ -99,18 +99,20 @@
     </script>
 </head>
 <body>
-    <section id='options'>
-    <ul id="filters" class="option-set clearfix">
-      <li><a href="#" data-filter="*">show all</a></li>
-      <li><a href="#" data-filter=".new-york">New York</a></li>
-      <li><a href="#" data-filter=".san-francisco">San Francisco</a></li>
-      <li><a href="#" data-filter=".burger">Burgers</a></li>
-      <li><a href="#" data-filter=".chicken">Chicken</a></li>
-      <li><a href="#" data-filter=".Burrito">Burrito</a></li>
-    </ul>
-    </section>
+    <div id="outer">
+        <section id='options' style='margin: 0 auto !important; width:500px'>
+        <ul id="filters" class="option-set clearfix">
+          <li><a href="#" data-filter="*">Show All</a></li>
+          <li><a href="#" data-filter=".new-york">New York</a></li>
+          <li><a href="#" data-filter=".san-francisco">San Francisco</a></li>
+          <li><a href="#" data-filter=".burger">Burgers</a></li>
+          <li><a href="#" data-filter=".chicken">Chicken</a></li>
+          <li><a href="#" data-filter=".Burrito">Burrito</a></li>
+        </ul>
+        </section>
 
-    <div id="sightings">
+        <div id="sightings" style='margin: 0 auto !important; width: 1200px !important'>
+        </div>
     </div>
      <script id="sighting_html" type="text/html">
         <div class="sighting <%= sighting.item_name %> <%= sighting.place_name %>" id="sighting_<%= sighting.id %>">
