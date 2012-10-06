@@ -22,16 +22,14 @@ class Command(BaseCommand):
                 review = sighting['current_review']
                 item = sighting['item']
                 place = sighting['place']
-                try:
-                    Sighting.objects.create(
+                new, created = Sighting.objects.get_or_create(
                         id=sighting['id'],
                         thumb_280=review['thumb_280'],
                         item_name=item['name'],
                         place_name=place['name'],
                         lat=sighting['latitude'],
                         lng=sighting['longitude']
-                    )
+                )
+                if created:
                     print 'Added', sighting['id']
-                except IntegrityError:
-                    pass
             time.sleep(10)
